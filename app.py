@@ -1,5 +1,5 @@
 class IntegerSpiral:
-    
+
     def __init__(self, x, y):
         """
         Initializing x, y coordinates.
@@ -15,9 +15,8 @@ class IntegerSpiral:
         self.len_y = len(self.y_axis)
         self.final_number = ((x - 1) * (y - 1)) + (x - 1) + (y - 1)
         self.integer_list = [i for i in range(self.final_number + 1)]
-        self.table = [[_ for _ in range(x)] for _ in range(y)]
-        # matrix = 
-
+        # self.table = [[i for i in range(x)] for _ in range(y)]
+        self.layout = [[0 for _ in range(x)] for _ in range(y)]
 
     def create_table(self):
         """
@@ -29,7 +28,6 @@ class IntegerSpiral:
             for item_y in self.x_axis:
                 self.table.append([item_x, item_y])
 
-        
         # prettifying the table and its coordinates for presentation purposes
         count = 0
         for coordinates in self.table:
@@ -46,56 +44,54 @@ class IntegerSpiral:
     def add_values(self):
         """ this method is created to add values to coordinates in the table to create spiral """
         # adding value to each coordinates
-        m = 10
-        n = 8
-        value = 0
+        m = self.x
+        n = self.y
+        integer = 0
         left = 0
-        top = 0
+        up = 0
         right = m - 1
-        bottom = n - 1
+        down = n - 1
         direction = 'right'
 
-        while (left <= right and top <= bottom):
+        while (left <= right and up <= down):
             if direction == 'right':
                 for i in range(left, right + 1):
-                    self.table[top][i] = value
-                    value += 1
-                top += 1
+                    self.layout[up][i] = integer
+                    integer += 1
+                up += 1
                 direction = 'down'
 
             if direction == 'down':
-                for i in range(top, bottom + 1):
-                    self.table[i][right] = value
-                    value += 1
+                for i in range(up, down + 1):
+                    self.layout[i][right] = integer
+                    integer += 1
                 right -= 1
                 direction = 'left'
 
             if direction == 'left':
                 for i in range(right, left -1 , -1):
-                    self.table[bottom][i] = value
-                    value += 1
-                bottom -= 1
+                    self.layout[down][i] = integer
+                    integer += 1
+                down -= 1
                 direction = 'top'
 
             if direction == 'top':
-                for i in range(bottom, top - 1, -1):
-                    self.table[i][left] = value
-                    value += 1
+                for i in range(down, up - 1, -1):
+                    self.layout[i][left] = integer
+                    integer += 1
                 left += 1
                 direction = 'right'
 
-        for item in self.table:
-            print(item, end='\n')
-
     def get_layouts(self):
-        "this method returns"
-        for item in self.table:
-            print(item)
+        " this method is used to print the layout inside the self.layout list. "
+        for arr in self.layout:
+            print(*arr, sep='\t')
 
-    def get_value_layouts():
+    def get_layouts_by_value():
         pass
 
 
-spiral = IntegerSpiral(4, 3)
-spiral.create_table()
-# spiral.add_values()
+spiral = IntegerSpiral(10, 8)
+# spiral.create_table()
+spiral.add_values()
+spiral.get_layouts()
