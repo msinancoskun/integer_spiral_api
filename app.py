@@ -9,37 +9,8 @@ class IntegerSpiral:
         """
         self.x = x
         self.y = y
-        self.x_axis = [i for i in range(x)]
-        self.y_axis = [k for k in range(y)]
-        self.len_x = len(self.x_axis)
-        self.len_y = len(self.y_axis)
-        self.final_number = ((x - 1) * (y - 1)) + (x - 1) + (y - 1)
-        self.integer_list = [i for i in range(self.final_number + 1)]
-        # self.table = [[i for i in range(x)] for _ in range(y)]
+        # this line creates the layout using basic matrix in math.
         self.layout = [[0 for _ in range(x)] for _ in range(y)]
-
-    def create_table(self):
-        """
-        This function creates coordinates table for numbers resulting in a spiral to be placed.
-        Then place the correct values to each coordinates to create a spiral.
-        """
-        # creating coordinates of numbers in the table
-        for item_x in self.y_axis:
-            for item_y in self.x_axis:
-                self.table.append([item_x, item_y])
-
-        # prettifying the table and its coordinates for presentation purposes
-        count = 0
-        for coordinates in self.table:
-            # if x coordinates are the same, print them on the same line
-            # else print them on a newline
-            if self.table[count][0] <= self.table[self.len_x - count][0]:
-                print(coordinates, end=' ')
-            else:
-                print('\n')
-                print(coordinates, end=' ')
-                count = 0
-            count += 1
 
     def add_values(self):
         """ this method is created to add values to coordinates in the table to create spiral """
@@ -85,13 +56,14 @@ class IntegerSpiral:
     def get_layouts(self):
         " this method is used to print the layout inside the self.layout list. "
         for arr in self.layout:
+            # print("index" , *[i for i in range(self.len_x)], sep=' | ')
             print(*arr, sep='\t')
 
-    def get_layouts_by_value():
-        pass
+    def get_layouts_by_value(self, x_coor, y_coor):
+        return "The value held by x: '{}', y: '{}' coordinates is '{}'".format(x_coor, y_coor, self.layout[y_coor][x_coor])
 
 
 spiral = IntegerSpiral(10, 8)
-# spiral.create_table()
 spiral.add_values()
 spiral.get_layouts()
+print(spiral.get_layouts_by_value(9, 7))
