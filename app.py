@@ -82,9 +82,9 @@ class IntegerSpiral:
 
 
 # Test cases
-spiral = IntegerSpiral(10, 6)
-print(spiral.create_layout())
-print(spiral.get_layouts())
+# spiral = IntegerSpiral(10, 6)
+# print(spiral.create_layout())
+# print(spiral.get_layouts())
 # print(spiral.get_layouts_by_value("106-0000", 5, 2))
 
 
